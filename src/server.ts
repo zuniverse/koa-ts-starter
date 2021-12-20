@@ -3,6 +3,7 @@ import bodyParser from "koa-bodyparser";
 import cors from "koa2-cors";
 import logger from "koa-logger";
 import config from "./config";
+import index from "./routes/index";
 import ping from "./routes/ping";
 
 const app = new Koa();
@@ -16,6 +17,8 @@ app.use(
   })
 );
 app.use(logger());
+
+app.use(index.routes());
 app.use(ping.routes());
 
 const server = app
